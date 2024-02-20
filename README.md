@@ -40,14 +40,15 @@ Cả hai đều tuyệt vời và mỗi hệ điều hành có ưu và nhược 
 * VNC hoạt động dựa trên mô hình client/server. Máy tính cần được cài đặt thành một máy chủ VNC, trong khi máy tính khác muốn điều khiển từ xa cần cài đặt một trình xem VNC, hoặc còn gọi là client. Khi hai thành phần này được kết nối, máy chủ VNC sẽ chuyển gửi hình ảnh màn hình từ xa đến trình xem VNC.  
 * Ngoài việc xem màn hình từ xa, VNC cũng cho phép người dùng điều khiển máy tính từ xa bằng cách sử dụng bàn phím và chuột của thiết bị điều khiển. Điều này mang lại khả năng kiểm soát đầy đủ các hoạt động trên máy tính từ xa sau khi được cấp phép từ máy tính đó.
 # Thực hành
-Tạo file Dockerfile và docker-compose như trong repository, ban đầu ta build image, đặt tên nó là docker-vnc-desktop chẳng hạn.  
-lệnh: docker build -t docker-vnc-desktop  
-Sau khi image Docker đã được xây dựng, ta có thể chạy một container từ image đó bằng cách sử dụng lệnh sau  
-docker run -p 5901:5901 -it docker-vnc-desktop  
-Lệnh trên sẽ chạy một container Docker mới từ image docker-vnc-desktop và ánh xạ cổng 5901 của máy chủ đến cổng 5901 của container Docker. Tiếp theo ta sẽ phải bật server vnc lên. Ta làm lần lượt như sau:  
-vncserver kill :1  
-Khởi động lại vnc server bằng cách
-vncserver  
-Chạy vncserver bằng câu lệnh sau
-vncserver -localhost no :1
-Và sau đó ở client ta sử dụng RealVNC Viewer và truy cập vào localhost:5901. Ta được kết quả như ảnh ở trong repository
+* Tạo file Dockerfile và docker-compose như trong repository, ban đầu ta build image, đặt tên nó là docker-vnc-desktop chẳng hạn.  
+lệnh:
+**_docker build -t docker-vnc-desktop_**  
+* Sau khi image Docker đã được xây dựng, ta có thể chạy một container từ image đó bằng cách sử dụng lệnh sau  
+**_docker run -p 5901:5901 -it docker-vnc-desktop_**  
+* Lệnh trên sẽ chạy một container Docker mới từ image docker-vnc-desktop và ánh xạ cổng 5901 của máy chủ đến cổng 5901 của container Docker. Tiếp theo ta sẽ phải bật server vnc lên. Ta làm lần lượt như sau:  
+**_vncserver kill :1_**  
+* Khởi động lại vnc server bằng cách
+**_vncserver_**  
+* Chạy vncserver bằng câu lệnh sau
+**_vncserver -localhost no :1_**  
+* Và sau đó ở client ta sử dụng RealVNC Viewer và truy cập vào localhost:5901. Ta được kết quả như ảnh ở trong repository
