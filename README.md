@@ -41,14 +41,15 @@ Cả hai đều tuyệt vời và mỗi hệ điều hành có ưu và nhược 
 * Ngoài việc xem màn hình từ xa, VNC cũng cho phép người dùng điều khiển máy tính từ xa bằng cách sử dụng bàn phím và chuột của thiết bị điều khiển. Điều này mang lại khả năng kiểm soát đầy đủ các hoạt động trên máy tính từ xa sau khi được cấp phép từ máy tính đó.
 # Thực hành
 * Tạo file Dockerfile và docker-compose như trong repository, ban đầu ta build image, đặt tên nó là docker-vnc-desktop chẳng hạn.  
-lệnh:
+lệnh:  
 **_docker build -t docker-vnc-desktop_**  
 * Sau khi image Docker đã được xây dựng, ta có thể chạy một container từ image đó bằng cách sử dụng lệnh sau  
 **_docker run -p 5901:5901 -it docker-vnc-desktop_**  
-* Lệnh trên sẽ chạy một container Docker mới từ image docker-vnc-desktop và ánh xạ cổng 5901 của máy chủ đến cổng 5901 của container Docker. Tiếp theo ta sẽ phải bật server vnc lên. Ta làm lần lượt như sau:  
+Lệnh trên sẽ chạy một container Docker mới từ image docker-vnc-desktop và ánh xạ cổng 5901 của máy chủ đến cổng 5901 của container Docker. Tiếp theo ta sẽ phải bật server vnc lên. Ta làm lần lượt như sau:  
+* Đầu tiên là ta dừng và hủy bỏ phiên VNC đang chạy trên màn hình ảo số 1.
 **_vncserver kill :1_**  
-* Khởi động lại vnc server bằng cách
+* Khởi động phiên làm việc mới trên máy chủ. Ta có thể kết nối đến phiên này từ một máy tính khác bằng cách sử dụng một ứng dụng khách VNC( ở đây ta dùng RealVNC Viewer) và nhập địa chỉ IP của máy chủ cùng với số của màn hình ảo.  
 **_vncserver_**  
-* Chạy vncserver bằng câu lệnh sau
+* Khởi động một máy chủ VNC trên màn hình ảo số 1 và cho phép kết nối từ xa từ bất kỳ máy tính nào, không chỉ từ localhost.  
 **_vncserver -localhost no :1_**  
 * Và sau đó ở client ta sử dụng RealVNC Viewer và truy cập vào localhost:5901. Ta được kết quả như ảnh ở trong repository
